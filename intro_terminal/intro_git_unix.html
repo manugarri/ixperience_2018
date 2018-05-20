@@ -1,0 +1,159 @@
+<style>
+body {
+   color: #555555;
+   font-family: Lato;
+}
+
+h1,h2,h3{
+color: magenta;
+}
+
+h2{
+color: magenta;
+}
+</style>
+
+<h1 id="intro-to-git-unix-utilities">Intro to Git &amp; Unix utilities</h1>
+<p>In this session we will explain how to use the most common Unix utilities, including <code>git</code>, our friendly Version Control System (VCS).</p>
+<p>To start , we will clone a program repository, this means making a copy of a repository in github in our computer.</p>
+<h3 id="clone-a-repository-from-github-with-git-clone-">Clone a repository from Github with <code>git clone</code>:</h3>
+<p><code>git clone https://github.com/manugarri/ixperience_2018_instructor.git</code></p>
+<p>This will download the repository into a folder (also named directory) named <code>ixperience_2018_instructor</code>.</p>
+<p>You can check that the folder exist by using <code>ls</code> , that lists the files in the current folder:</p>
+<pre><code><span class="hljs-attribute">ls</span>
+</code></pre><p>Now we will create another directory, and this one will be our working directory. We can do that with the command <code>mkdir</code></p>
+<pre><code><span class="hljs-built_in">mkdir</span> ixperience_2018_personal
+</code></pre><p>We will now navigate into the newly created directory with <code>cd</code> (change directory):</p>
+<p><code>cd ixperience_2018_personal</code></p>
+<p>We can check the directory we are by doing <code>pwd</code>.</p>
+<pre><code><span class="hljs-built_in">pwd</span>
+</code></pre><h2 id="working-with-your-own-repository">Working with your own repository</h2>
+<p>Now that we are in a new directory we can create a new git repository, this will allow us to keep files in this directory in version control (securely stored in Github).</p>
+<h3 id="start-a-repository-with-git-init-">Start a repository with <code>git init</code>.</h3>
+<p>You also need to create it in Github by clicking on the <em>New</em> Button:
+<img src="http://angus.readthedocs.io/en/2016/_images/git_new_repository.png" alt="create_a_repository"></p>
+<p>Make sure you name your repository <code>ixperience_2018_personal</code></p>
+<h3 id="add-a-remote-to-the-new-repository-with-git-remote-add-origin-remote_url-">Add a remote to the new repository with <code>git remote add origin REMOTE_URL</code>.</h3>
+<p>Where <code>origin</code> denotes the name you will use to identify this remote in this repository (you can have multiple remotes, for example, one can be your personal copy of a project and another can be your company&#39;s copy of a project).</p>
+<p>Where <code>REMOTE_URL</code> will be your repository&#39;s github url (usually <code>https://github.com/YOUR_GITHUB_USERNAME/ixperience_2018_personal.git</code>)</p>
+<hr>
+<p>We are going to make another directory to store today&#39;s session files and navigate into it.
+We can execute multiple commands consecutively by using <code>&amp;&amp;</code> to separate them. For example, if we want to create a directory and move into it we can do:</p>
+<pre><code><span class="hljs-built_in">mkdir</span> intro_terminal &amp;&amp; <span class="hljs-built_in">cd</span> intro_terminal
+</code></pre><h3 id="use-mv-to-move-files-from-one-folder-to-another-and-cp-to-copy-files-from-one-folder-to-another">Use <code>mv</code> to move files from one folder to another, and <code>cp</code> to copy files from one folder to another</h3>
+<p>For example, we can copy the file <code>primary_results.csv</code> from my repository into your personal folder.</p>
+<p><code>cp ../../ixperience_2018_instructor/primary_results.csv .</code></p>
+<p>Note: For the previous path, we are using some unix path conventions, where <code>..</code> means <em>&quot;the directory above the current one&quot;</em> and <code>.</code> means <em>&quot;the current directory&quot;</em>.</p>
+<p>So what we are actually doing is:</p>
+<pre><code><span class="hljs-keyword">COPY</span><span class="bash"> <span class="hljs-string">"one folder above current one -&gt; another folder above the folder above current one -&gt; folder ixperience_2018_instructor -&gt; file primary_results.csv"</span>  INTO the current folder</span>
+</code></pre><h3 id="add-files-to-a-new-commit-commit-them-with-git-add-file_name-">Add files to a new commit (<em>commit them</em>) with <code>git add FILE_NAME</code></h3>
+<pre><code>git <span class="hljs-keyword">add</span><span class="bash"> primary_results.csv</span>
+</code></pre><p>Thats it! We have used git to clone someone else&#39;s repository, we have copied a file from that repository into our brand hew repository, and we have added that file to a new commit!.</p>
+<p>Now we can get deep into:</p>
+<h2 id="unix-utilities-overview-">Unix utilities Overview.</h2>
+<p>Where we see the most common Unix commands and how to use them.</p>
+<h2 id="ls-list-">ls (list)</h2>
+<p>we use ls to list items in a folder</p>
+<pre><code><span class="hljs-attribute">ls</span>
+</code></pre><p>We can add arguments to commands, that provide different functionalities (or enable different usage modes).
+For example, if we want to list the files in a folder and see their file sizes we can do:</p>
+<pre><code><span class="hljs-keyword">ls</span> -<span class="hljs-keyword">lh</span>
+</code></pre><p>where the argument <code>-lh</code> is adding two options together <code>l</code> which provides aditional information for each file and <code>h</code> that
+provides the file sizes in human readable format (megabytes instead of bytes)</p>
+<h2 id="man-manual-">man (manual)</h2>
+<p>Most unix applications have a user manual that you can check for instructions on how to use it. For example, we can do:</p>
+<pre><code><span class="hljs-keyword">man</span> <span class="hljs-keyword">ls</span>
+</code></pre><h2 id="touch">touch</h2>
+<p>we use touch to create a new file. For example, we can create a <code>README.md</code> file (a file that provides a description for a repository) like:</p>
+<p><code>touch README.md</code></p>
+<p>By the way, now that we have created the readme file, lets open it with any text editor and write a repository description! (for example &quot;ixperience Program Repository&quot;), then save it!.</p>
+<h2 id="wc-word-count-">wc (word count)</h2>
+<p>We use wc to count elements in a document (or documents)
+We can use wc with the argument -l to just count the number of lines in a document</p>
+<pre><code>wc <span class="hljs-_">-l</span> primary_results.csv
+</code></pre><p>We can count the lines for all files in the folder if we use a wildcard (<code>*</code>) like:</p>
+<pre><code>wc <span class="hljs-_">-l</span> *
+</code></pre><h2 id="head">head</h2>
+<p>We use <code>head</code> to read the first lines in a file, it is useful to get a feeling of how a file looks like</p>
+<pre><code><span class="hljs-selector-tag">head</span> <span class="hljs-selector-tag">primary_results</span><span class="hljs-selector-class">.csv</span>
+</code></pre><p>We can see a specific number of lines if we use the option <code>-n</code>, for example, if we want to see the first 5 lines.</p>
+<pre><code>head primary_results<span class="hljs-selector-class">.csv</span> -n <span class="hljs-number">5</span>
+</code></pre><h2 id="tail">tail</h2>
+<p>We use <code>tail</code> similarly to <code>head</code>, but to print the last lines in a file</p>
+<pre><code>tail primary_results<span class="hljs-selector-class">.csv</span> -n <span class="hljs-number">5</span>
+</code></pre><h2 id="cut">cut</h2>
+<p>We use <code>cut</code> to split lines in a file based on a delimiter ( a delimiter being a character that delimits the different fields)</p>
+<p>For example, if we want to split every line of the file by its commas, and get the second field, we can do so like:</p>
+<pre><code>cut <span class="hljs-_">-d</span> <span class="hljs-string">","</span> <span class="hljs-_">-f</span> 2 primary_results.csv
+</code></pre><h2 id="grep">grep</h2>
+<p>grep allows us to search specific strings (or regular expressions) in a file.</p>
+<pre><code><span class="hljs-keyword">grep</span> <span class="hljs-string">"New York"</span> primary_results.csv
+</code></pre><p>We can grep lower and upper case words with the argument <code>-i</code></p>
+<pre><code>grep -<span class="hljs-selector-tag">i</span> <span class="hljs-string">"new york"</span> primary_results.csv
+</code></pre><h2 id="sort">sort</h2>
+<p>We can use the command <code>sort</code> to well, sort files.</p>
+<p>We can sort by a specific column with the argument <code>-k</code> and specify the field separator with <code>-t</code></p>
+<p>So if we want to sort by the 3rd column, we can do it like:</p>
+<p>sort -k 3 -t &quot;,&quot; primary_results.csv</p>
+<h2 id="cat">cat</h2>
+<p><code>cat</code> prints the contents of a file to the terminal</p>
+<h2 id="pipes-and-">pipes (<code>&gt;</code>, <code>&gt;&gt;</code>, and <code>|</code>)</h2>
+<p>The cool thing about most unix utilities is that they are <strong>composeable</strong>, that means that we can use the output of one command
+as the input to another! This works because all of unix utilities print their output in what is called <strong>Standard Output (stdout)</strong>, one of the three basic <em>standard streams</em>,
+the other two being <em>standard input and standard error</em> :</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Stdstreams-notitle.svg/323px-Stdstreams-notitle.svg.png" alt="std streams"></p>
+<p>We compose utilities by <em>&quot;piping&quot;</em> the commands using the pipe <code>|</code></p>
+<p>For example we can use cut to find the 2nd column of the  file then get the first 5 elements using head</p>
+<pre><code>cut <span class="hljs-_">-d</span> <span class="hljs-string">","</span> <span class="hljs-_">-f</span> 2 primary_results.csv | head -n 5
+</code></pre><p>We can use the greater than <code>&gt;</code> symbol to write the current output into a file</p>
+<p>For example, if we want to save the output of the previous command into a file we can do that like:</p>
+<pre><code><span class="hljs-built_in">cut</span> -d <span class="hljs-string">","</span> -f <span class="hljs-number">2</span> primary_results.<span class="hljs-built_in">csv</span> | head -n <span class="hljs-number">5</span> &gt; first_5_states.<span class="hljs-built_in">csv</span>
+</code></pre><p>Using <code>&gt;</code> will recreate the file from scratch, while <code>&gt;&gt;</code> will append to the file (add lines to the end)</p>
+<h2 id="uniq">uniq</h2>
+<p>We can use uniq to find the uniquely different lines in a list of lines (and count their ocurrences with <code>-c</code>)</p>
+<p>cut -d &quot;,&quot; -f 2 primary_results.csv  | uniq -c</p>
+<p>However, uniq is not a smart command. Repeated lines will not be detected if they are not adjacent. So you have to sort the file before hand.</p>
+<hr>
+<h2 id="making-a-commit">Making a commit</h2>
+<p>We will add a couple of additional files into our commit:</p>
+<p><code>git add README.md &amp;&amp; git add first_5_states.csv</code></p>
+<p>We can check the status of our repository with <code>git status</code>.</p>
+<pre><code><span class="hljs-attribute">git status</span>
+</code></pre><p>If things went well, we should see that 3 files are going to be added to the repo.</p>
+<p>Once we have added all the files we want to track into version control, we need to commit them. Commit basically means telling git <em>&quot;ok, this is the new version for the files that I want you to track&quot;</em>.</p>
+<h3 id="make-a-commit-with-git-commit-m-commit_message-">Make a commit with <code>git commit -m &#39;COMMIT_MESSAGE&#39;</code></h3>
+<pre><code>git commit -m '<span class="hljs-keyword">Add</span> <span class="hljs-built_in">intro</span> to terminal example files'
+</code></pre><h3 id="push-the-changes-the-new-commit-to-github-with-git-push-remote_name-branch_name-">Push the changes (the new commit) to Github with <code>git push REMOTE_NAME BRANCH_NAME</code></h3>
+<pre><code>git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master
+</code></pre><p>Where <code>origin</code> is the name we assigned to our remote when we added it
+and <code>master</code> is the default branch.</p>
+<hr>
+<h1 id="exercises">Exercises</h1>
+<h3 id="1-print-out-the-lines-10-20-of-the-file-primary_results-csv-and-save-them-to-a-file-named-sample_votes-csv-">1. Print out the lines 10-20 of the file <code>primary_results.csv</code>, and save them to a file named <code>sample_votes.csv</code></h3>
+<h3 id="2-save-all-the-results-from-the-suffolk-county-into-a-file-named-suffolk_votes-csv-">2. Save all the results from the Suffolk county into a file named <code>suffolk_votes.csv</code></h3>
+<h3 id="3-save-the-unique-election-candidates-with-their-occurrences-into-a-file-named-candidates-txt-">3. Save the unique Election candidates (with their occurrences) into a file named <code>candidates.txt</code></h3>
+<h3 id="4-push-the-files-candidates-txt-suffolk_votes-csv-and-sample_votes-csv-to-your-repository-">4. Push the files <code>candidates.txt, suffolk_votes.csv and sample_votes.csv</code> to your repository.</h3>
+<hr>
+<hr>
+<h1 id="python-from-the-terminal">Python from the terminal</h1>
+<p>There are 2 main ways to interact with python from the terminal.</p>
+<p><strong>REPL Mode</strong></p>
+<p>First, you can run python&#39;s <strong>REPL</strong> <em>(Read-Eval-Print-Loop)</em> , also called <em>Python Console, Python Terminal</em>. This opens a console where you can interact similarly to the CodeAcademy&#39;s tutorial. You open the repl just typing <code>python</code>.</p>
+<p>You can exit the repl by pressing (ctrl+d) or (ctrl+z), it depends on the OS.</p>
+<p><strong>Script Mode</strong></p>
+<p>We can also call python to run a python script. What is a python script? Basically, its a text file, with the file extension <code>.py</code>, that contains python code that we can run.</p>
+<p>We can run those scripts just by doing</p>
+<pre><code><span class="hljs-keyword">python</span> name_of_the_script.<span class="hljs-keyword">py</span>
+</code></pre><p>By doing that we will run <strong>ALL OF THE CODE IN THE SCRIPT</strong></p>
+<p>For example, lets create a python script that prints out the current date. We can create the script by doing:</p>
+<pre><code><span class="hljs-selector-tag">touch</span> <span class="hljs-selector-tag">current_date</span><span class="hljs-selector-class">.py</span>
+</code></pre><p>Inside this script we put the following:</p>
+<pre><code><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime
+<span class="hljs-keyword">print</span>(datetime.utcnow())
+</code></pre><p>If we run this script (by doing <code>python current_date.py</code> we see that it prints the current date (in UTC timezone).</p>
+<p>And because the output for python is written to standard output, we can pipe it too!</p>
+<pre><code> python current_date.py | cut <span class="hljs-_">-d</span> <span class="hljs-string">"-"</span> <span class="hljs-_">-f</span> 1
+</code></pre><h2 id="structure-of-a-python-script">Structure of a python script</h2>
+<p>We can see the file <code>basic_arguments.py</code> in the instructor&#39;s repository to see the structure of a basic python script.</p>
+<p>Afterwards, we can see the file <code>advanced_arguments.py</code> in the instructor&#39;s repository to see the structure of a more advanced python script</p>
+
